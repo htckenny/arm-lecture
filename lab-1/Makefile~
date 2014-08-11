@@ -2,7 +2,7 @@ CC	= arm-linux-gnueabihf-gcc
 CFLAGS	= -O1 -Wall
 LDFLAGS = -fno-stack-protector
 
-objects	= fibseq.o fib.o
+objects	= fibseq.o fib-non-recursive.o
 
 default: fibseq
 

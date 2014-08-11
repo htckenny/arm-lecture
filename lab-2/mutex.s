@@ -13,7 +13,9 @@ lock_mutex:
 	ldr r1, =locked		@load locked value into a temp register
 .L1:
 	ldrex r2, [r0] 		@LDREX from [r0] 
-	cmp r2, #0     		@compare to unlocked value(0)
+	cmp r2, #0     		@compare to unlocked value(0)0
+	
+
 	strexeq r2, r1, [r0] 	@if r2 unlocked, store r1 into [r0] 
 	cmpeq r2, #0		
 	bne .L1
