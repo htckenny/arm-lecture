@@ -10,22 +10,27 @@
 
 fibonacci:
 	@ ADD/MODIFY CODE BELOW
+	@ PROLOG
+	push {r3, r4, r5, r6, lr}			
 	
-	push {r3, r4, r5, lr}		@ PROLOG	
-	mov r3, #-1
-	mov r5, #1
-	ble LOOP	
-
+	mov r3, r0	@counter
+	mov r4, #0	@r4=0
+	sub r4, r4, #1	@previous,  r4 = r4-1
+	mov r5, #0
+	add r5, r5, #1	@result, r5 = r5+1 	
 	
 	
-	pop {r3, r4, r5, pc}		@EPILOG
-
+.LOOP:
+	sub r3, r3, #1	@r3 = r3 - 1 
+	add r6, r4, r5	@r6 = r4 + r5
+	mov r4, r5
+	mov r5, r6	
+	cmp r3, #-2
+		bgt .LOOP
+	
+	mov r0, r4
+	pop {r3, r4, r5, r6, pc}	@EPILOG
+	
 	@ END CODE MODIFICATION
-LOOP:
-	add r4, r5, r3
-	mov r3, r5 
-	mov r5, r4
-
-
 	.size fibonacci, .-fibonacci
 	.end

@@ -2,7 +2,7 @@ CC	= arm-linux-gnueabihf-gcc
 CFLAGS	= -O1 -Wall
 LDFLAGS = -fno-stack-protector
 
-objects	= fibseq.o fib.o
+objects	= fibseq.o fib-non-recursive.o
 
 default: fibseq
 
@@ -27,9 +27,9 @@ clean:
 QEMU_CMD = qemu-arm -L /usr/arm-linux-gnueabihf ./fibseq &
 CMD = yes 9 | $(call QEMU_CMD) && sleep 1
 qemu: fibseq
-	@yes 5 | $(call QEMU_CMD)
+	@yes 10 | $(call QEMU_CMD)
 	@sleep 1
-	@yes 6 | $(call QEMU_CMD)
+	@yes 11 | $(call QEMU_CMD)
 	@sleep 1
-	@yes 7 | $(call QEMU_CMD)
+	@yes 12 | $(call QEMU_CMD)
 	@sleep 1
